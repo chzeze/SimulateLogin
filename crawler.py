@@ -1,6 +1,7 @@
 import urllib
 import urllib2
 import cookielib
+from bs4 import BeautifulSoup
 
 filename = 'cookie.txt'
 #声明一个MozillaCookieJar对象实例来保存cookie，之后写入文件
@@ -28,14 +29,17 @@ opener.addheaders.append( ('Accept-Language', 'zh-CN,zh;q=0.8') )
 opener.addheaders.append( ('Accept-Encoding', 'gzip, deflate') )
 opener.addheaders.append( ('Connection', 'keep-alive') )
 opener.addheaders.append( ('Referer', 'http://yjsgl.fzu.edu.cn/login.aspx') )
+
 try:
     result = opener.open(loginUrl,postdata)
 except opener.URLError, e:
     print e.reason
 
-for item in cookie:
-    print 'Name = '+item.name
-    print 'Value = '+item.value
+#==============================================================================
+# for item in cookie:
+#     print 'Name = '+item.name
+#     print 'Value = '+item.value
+#==============================================================================
 
 #保存cookie到cookie.txt中
 cookie.save(ignore_discard=True, ignore_expires=True)
@@ -43,4 +47,16 @@ cookie.save(ignore_discard=True, ignore_expires=True)
 gradeUrl = 'http://yjsgl.fzu.edu.cn/xsgl/xsxx_show.aspx'
 #请求访问成绩查询网址
 result = opener.open(gradeUrl)
-print result.read()
+
+html=result.read()
+#print html
+
+#开始解析
+soup = BeautifulSoup(html)
+#print type(soup.find_all("td", class_="tdright2"))
+for tag in soup.find_all("td"):
+    print tag.string
+
+
+
+
