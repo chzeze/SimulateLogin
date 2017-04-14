@@ -10,9 +10,9 @@ opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))
 
 #设置请求参数
 values = {}
-values['__VIEWSTATE'] = "/wEPDwUJODA3MTI1MjMyZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WAgUIYnRuTG9naW4FDEltYWdlQnV0dG9uMQ=="
-values['tbxUserID'] = "160320055"
-values['InputPwd'] = "5026ZEze"
+values['__VIEWSTATE'] = "/wE***RuTG9naW4FDEltYWdlQnV0dG9uMQ=="
+values['tbxUserID'] = "****"
+values['InputPwd'] = "****"
 values['btnLogin.x'] = "55"
 values['btnLogin.y'] = "23"
 postdata = urllib.urlencode(values)
